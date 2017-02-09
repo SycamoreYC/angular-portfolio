@@ -1,0 +1,13 @@
+<div class="pagination">
+    <ul class="page-wrap">
+        <li class="page-item">
+            <a ng-click="selectPrevious()" ng-class="{'selected': noPrevious()}">Previous</a>
+        </li>
+        <li ng-repeat="page in pages">
+            <a ng-click="selectPage(page)" ng-class="{'selected': isActive(page)}" class="page-item">{{page}}</a>
+        </li>
+        <li class="page-item">
+            <a ng-click="selectNext()" ng-class="{'selected': noNext()}">Next</a>
+        </li>
+    </ul>
+</div>

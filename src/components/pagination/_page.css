@@ -1,0 +1,15 @@
+.page-wrap {
+    display: flex;
+    list-style: none;
+    cursor: pointer ;
+}
+.page-item {
+    margin-left: 10px;
+}
+.selected {
+    color: #8e8e8e;
+}
+.selected:hover {
+    color: #8e8e8e;
+    text-decoration: none;
+}

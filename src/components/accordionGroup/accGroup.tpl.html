@@ -1,0 +1,12 @@
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle">{{heading}}</a>
+        <button ng-click="isOpen = !isOpen">show</button>
+        <button id="remove" ng-click="remove()">remove</button>
+    </div>
+    <div class="accordion-body" ng-show="isOpen">
+        <div class="accordion-inner" ng-transclude="">
+
+        </div>
+    </div>
+</div>

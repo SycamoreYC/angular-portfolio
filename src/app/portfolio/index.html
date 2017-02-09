@@ -1,0 +1,225 @@
+<section class="portfolio">
+    <div class="nav-wrap">
+        <div class="nav">
+            <div class="name">Sung</div>
+            <ul class="nav-list">
+                <li class="item" ng-click="vm.changeBlock('home')">Home</li>
+                <li class="item" ng-click="vm.changeBlock('about')">About</li>
+                <li class="item" ng-click="vm.changeBlock('portfolio')">Portfolio</li>
+                <li class="item" ng-click="vm.changeBlock('contact')">Contact</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="home block" id="home">
+        home is here
+        <table class="table table-bordered">
+            <tbody ng-repeat="user in vm.users" ng-click="vm.toggleSelected(user)" ng-switch on="vm.isSelected(user)">
+                <tr>
+                    <td>{{vm.getFullName(user)}}</td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr ng-switch-when="true">
+                    <td>{{user.sex}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul>
+            <li ng-repeat="user in vm.users" class="div" ng-click="vm.logPosition(user, $event)"></li>
+        </ul>
+    </div>
+
+    <div class="about block" id="about" >
+        <!--用户表单-->
+        <h1>User Info</h1>
+        <form name="userInfoForm">
+                <div class="control-group" ng-class="vm.getCssClasses(userInfoForm.email)">
+                    <label>Email</label>
+                    <input type="email" ng-model="vm.user.email" name="email" required>
+                    <span ng-show="vm.showError(userInfoForm.email, 'email')" class="help-inline">You must enter a valid email.</span>
+                    <span ng-show="vm.showError(userInfoForm.email, 'required')" class="help-inline">This field is required</span>
+                </div>
+                <button ng-disabled="!vm.canSave()" ng-class="{'error':!vm.canSave()}">提交</button>
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" ng-model="vm.user.lastName">
+                </div>
+
+                <div>
+                    <label>First Name</label>
+                    <input type="text" ng-model="vm.user.firstName">
+                </div>
+
+                <div>
+                    <label>gender</label>
+                    <label><input type="radio" ng-model="vm.user.sex" value="male">male</label>
+                    <label><input type="radio" ng-model="vm.user.sex" value="female">female</label>
+                </div>
+
+                <div>
+                    <label>Website</label>
+                    <input type="url" ng-model="vm.users.website">
+                </div>
+
+                <div>
+                    <label>Description</label>
+                    <input type="text" ng-model="vm.user.description">
+                </div>
+
+                <div>
+                    <label>Password</label>
+                    <input type="password" ng-model="vm.user.password">
+                </div>
+
+                <div>
+                    <label>Password(repeat)</label>
+                    <input type="password" ng-model="vm.repeatPassword">
+                </div>
+
+                <div>
+                    <label>Roles</label>
+                    <input type="checkbox" ng-model="vm.user.admin">
+                    Is Administration
+                    </label>
+                </div>
+        </form>
+
+        <div>
+            <label>Select a user value with email for label</label>
+            <select ng-model="vm.user.email" ng-options="user.email for user in vm.users"></select>
+            <select ng-model="vm.user.name" ng-options="vm.getFullName(user) for user in vm.users"></select>
+            <select ng-model="vm.user.email" ng-options="user.email as vm.getFullName(user) for user in vm.users"></select>
+            <select ng-model="vm.user.name" ng-options="vm.getFullName(user) as vm.getFullName(user) group by user.sex for user in vm.users"></select>
+        </div>
+
+        <div>
+            <label>country</label>
+            <!--code 排序-->
+            <select ng-model="vm.user.countryName" ng-options="value as key for (key, value) in vm.countriesByCode"></select>
+            <select ng-model="vm.user.countryName" ng-options="name as code for (code, name) in vm.countriesByCode"></select>
+            <!--name 排序-->
+            <select ng-model="vm.user.countryName" ng-options="name as code for (code, name) in vm.countriesByName"></select>
+            <select ng-model="vm.user.countryName" ng-options="code as name for (code, name) in vm.countriesByName"></select>
+            <select ng-model="vm.user.countryName" ng-options="code as name for (name, code) in vm.countriesByName"></select>
+        </div>
+
+
+        <pre ng-bind="vm.user | json"></pre>
+        <!--嵌套表单-->
+        <script type="text/ng-template" id="password-form">
+            <ng-form name="passwordForm">
+                <div ng-show="vm.user.password !== vm.repeatPassword">
+                    Passwords do not match!
+                </div>
+                <label>Password：</label>
+                <input ng-model="vm.user.password" type="password" required>
+                <label>Confirm Password：</label>
+                <input ng-model="vm.repeatPassword" type="password" required>
+            </ng-form>
+        </script>
+        <div>
+            <form name="form1" novalidate>
+                <legend>User Form</legend>
+                <label>Name</label>
+                <input ng-model="vm.user.name" required>
+                <ng-include src="'password-form'"></ng-include>
+            </form>
+        </div>
+
+        <!--// 验证重复输入-->
+        <form novalidate name="userForm">
+            <label>Websites</label>
+            <div ng-show="userForm.$invalid">The User Form is invalid.</div>
+            <div ng-repeat="website in vm.user.websites" ng-form="websiteForm">
+                <input type="url" name="website" ng-model="website.url" required>
+                <button ng-click="vm.remove($index)">x</button>
+                <span ng-show="vm.showError(websiteForm.website, 'url')">Please must enter a valid url</span>
+                <span ng-show="vm.showError(websiteForm.website, 'required')">This field is required.</span>
+            </div>
+            <button ng-click="vm.add()">Add Website</button>
+        </form>
+
+        <!-- 提交表单-->
+        <form action="http://www.google.com/search" method="get">
+            <input name="q">使用回车提交表单
+        </form>
+        <form ng-submit="vm.showAlert(q)">
+            <input ng-model="q">ng-submit 提交表单
+        </form>
+
+        <button ng-click="vm.revert()">清空</button>
+
+    </div>
+
+    <div class="portfolio block" id="portfolio">
+        <!--过滤器-->
+        <div class="well">
+            <label>
+                Search for: <input type="text" ng-model="vm.text">
+{{vm.text | logUpperCase}}
+            </label>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <th ng-click="vm.sort('name')"
+                    ng-class="{'sortUp': true, 'sortDown': vm.sortType('name', 'down')}">Name
+                </th>
+                <th ng-click="vm.sort('number')"
+                    ng-class="{'sortUp': vm.sortType('number', 'up'), 'sortDown': vm.sortType('number', 'down')}">number
+                </th>
+                <th ng-click="vm.sort('age')" ng-class="{'sortUp': vm.sortType('age', 'up'), 'sortDown': vm.sortType('age', 'down')}">age
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in vm.friends | filter: vm.text | orderBy:vm.sortField:vm.reverse">
+                    <td>{{item.name}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.age}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <div class="contact block" id="contact">
+        <div>contact me</div>
+        <!--指令-->
+        <div>
+            <button type="submit" size="large" ng-click="vm.equalPassword()">Click Me!</button>
+        </div>
+        <!--分页-->
+        <pagination page-num="10" current-page="vm.currentPage" on-select-page="vm.selectPage(page)"></pagination>
+        <pagination page-num="10" current-page="vm.currentPage"></pagination>
+        <!--自定义验证表单-->
+        <form name="passwordForm">
+            <input type="password" name="password" ng-model="vm.user.password">
+            <input type="password" name="confirmPassword" ng-model="vm.confirmPassword" validate-equals="vm.user.password">
+            <i ng-show="passwordForm.confirmPassword.$error.equals">not equals</i>
+            <!--异步验证email是否被占用-->
+            <div>
+                <input ng-model="vm.user.email" unique-email name="email">
+                <i ng-show="passwordForm.email.$error.uniqueEmail">invalid</i>
+            </div>
+        </form>
+        <!--提示指令-->
+        <alert type="alert.type" close="vm.closeAlert($index)" ng-repeat="alert in vm.alerts">
+            {{alert.msg}}
+        </alert>
+        <!--嵌入函数 -->
+        <div ng-init="model = {show: true, count: 0}">
+            <button ng-click="model.show = !model.show">Toggle Div</button>
+            <div if="model.show" ng-init="model.count = model.count+1">
+                Shown {{model.count}} times
+            </div>
+        </div>
+        <!--手风琴-->
+        <accordion>
+            <accordion-group heading="Heading 1">Group 1 Body</accordion-group>
+            <accordion-group heading="Heading 2">Group 2 Body</accordion-group>
+            <accordion-group heading="Heading 3">Group 3 Body</accordion-group>
+            <accordion-group heading="Heading 4">Group 4 Body</accordion-group>
+        </accordion>
+    </div>
+</section>

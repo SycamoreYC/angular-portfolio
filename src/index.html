@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>myPortfolio</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- css -- >
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../src/assets/css/app.css">
+    <link rel="stylesheet" href="../src/app/portfolio/_portfolio.css">
+    <link rel="stylesheet" href="../src/components/pagination/_page.css">
+    <!-- endinject -->
+</head>
+<body>
+    <div ui-view>
+        <a ui-sref="portfolio">点我</a>
+    </div>
+
+
+    <!--js lib-->
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <!--js lib end-->
+    <!-- js -- >
+    <!-- inject:js -->
+    <script src="../src/app/app.js"></script>
+    <script src="../src/app/app.router.js"></script>
+    <script src="../src/app/portfolio/module.js"></script>
+    <script src="../src/app/portfolio/router.js"></script>
+    <script src="../src/app/portfolio/controller.js"></script>
+    <script src="../src/app/portfolio/filter.js"></script>
+    <!-- endinject -->
+
+    <!-- componants:js -->
+
+    <script src="../src/components/index.js"></script>
+
+    <script src="../src/components/accordion/accordion.js"></script>
+
+    <script src="../src/components/accordion/accordionCtrl.js"></script>
+
+    <script src="../src/components/accordionGroup/accordionGroup.js"></script>
+
+    <script src="../src/components/alert/alert.js"></script>
+
+    <script src="../src/components/button/button.js"></script>
+
+    <script src="../src/components/eMail/email.js"></script>
+
+    <script src="../src/components/eMail/factory.js"></script>
+
+    <script src="../src/components/if/if.js"></script>
+
+    <script src="../src/components/pagination/page.js"></script>
+
+    <script src="../src/components/password/password.js"></script>
+
+    <!-- endinject -->
+</body>
+</html>

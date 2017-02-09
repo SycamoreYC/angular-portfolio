@@ -1,0 +1,22 @@
+{
+  "name": "sung",
+  "version": "1.0.0",
+  "description": "sung's personal portforlio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sung",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.2",
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.1.0",
+    "gulp-order": "^1.1.1",
+    "gulp-watch": "^4.3.11"
+  },
+  "dependencies": {
+    "angular": "^1.5.9",
+    "angular-ui-router": "^0.3.2"
+  }
+}

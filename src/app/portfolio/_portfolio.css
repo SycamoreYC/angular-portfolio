@@ -1,0 +1,64 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.portfolio {
+    width: 100%;
+}
+.nav-wrap {
+    height: 50px;
+}
+.nav {
+    display: flex;
+    height: 50px;
+    line-height: 50px;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    background: #dddddd;
+    opacity: 0.8;
+}
+.name {
+    width: 60%;
+    padding-left: 10%;
+}
+.nav-list {
+    list-style: none;
+    display: flex;
+    width: 40%;
+}
+
+.item {
+    width: 80px;
+    text-align: center;
+}
+.item:hover {
+    background: #e8e8e8;
+    cursor: pointer;
+}
+.block {
+    min-height: 500px;
+    border: 1px solid #e8e8e8;
+    margin-bottom: 20px;
+}
+.div {
+    float: left;
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+    background: pink;
+}
+.sortUp {
+    color: red;
+}
+.sortDown {
+    color: green;
+}
+
+/*校验*/
+.success {
+    color: #123456;
+}
+.error {
+    color: red;
+}
