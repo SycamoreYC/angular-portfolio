@@ -17,8 +17,24 @@
             controller: 'portfolioCtrl',
             controllerAs: 'vm'
         };
+        var zoo =  {
+            url: '/zoo',
+            templateUrl: '../src/app/zoo/index.html',
+            controller: 'zooCtrl',
+            controllerAs: 'vm'
+        };
+        var park ={
+            url: '/park',
+            templateUrl: '../src/app/park/index.html',
+            controller: 'parkCtrl',
+            controllerAs: 'vm'
+        };
+
         $stateProvider.state('home', home);
         $stateProvider.state('portfolio', portfolio);
+        $stateProvider.state('zoo', zoo);
+        $stateProvider.state('park', park);
+
         $urlRouterProvider.otherwise('/');
     }
 

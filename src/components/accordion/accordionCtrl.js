@@ -20,7 +20,7 @@
         vm.addGroup = function (groupScope) {
             vm.groups.push(groupScope);
             groupScope.$on('$destroy', function () {
-                this.removeGroup(groupScope);
+                vm.removeGroup(groupScope);
             });
         };
         vm.removeGroup = function (group) {

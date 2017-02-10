@@ -12,8 +12,16 @@
     <!-- endinject -->
 </head>
 <body>
-    <div ui-view>
-        <a ui-sref="portfolio">点我</a>
+    <div ui-view class="container">
+        <div>
+            <a ui-sref="portfolio">点我</a>
+        </div>
+        <div>
+            <a ui-sref="zoo">芝士就是力量，点我</a>
+        </div>
+        <div>
+            <a ui-sref="park">芝士就是力量续集，点我</a>
+        </div>
     </div>
 
 
@@ -25,10 +33,20 @@
     <!-- inject:js -->
     <script src="../src/app/app.js"></script>
     <script src="../src/app/app.router.js"></script>
+    <script src="../src/app/park/module.js"></script>
     <script src="../src/app/portfolio/module.js"></script>
+    <script src="../src/app/zoo/module.js"></script>
+    <script src="../src/app/zoo/tiger/module.js"></script>
     <script src="../src/app/portfolio/router.js"></script>
+    <script src="../src/app/zoo/router.js"></script>
+    <script src="../src/app/park/controller.js"></script>
+    <script src="../src/app/park/factory.js"></script>
     <script src="../src/app/portfolio/controller.js"></script>
     <script src="../src/app/portfolio/filter.js"></script>
+    <script src="../src/app/zoo/controller.js"></script>
+    <script src="../src/app/zoo/factory.js"></script>
+    <script src="../src/app/zoo/tiger/controller.js"></script>
+    <script src="../src/app/zoo/tiger/factory.js"></script>
     <!-- endinject -->
 
     <!-- componants:js -->
