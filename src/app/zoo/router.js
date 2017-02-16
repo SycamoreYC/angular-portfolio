@@ -14,7 +14,7 @@
             controller: 'tigerCtrl',
             controllerAs: 'vm',
             templateUrl: '/src/app/zoo/tiger/index.html'
-    };
+        };
     $stateProvider.state('tiger',tiger);
 }
 

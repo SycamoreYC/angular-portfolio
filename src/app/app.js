@@ -5,8 +5,8 @@
     angular.module('app',[
         'ui.router',
         'app.portfolio',
-        'app.park',
         'app.zoo',
+        'app.park',
         'components'
     ]);
 })(window.angular);

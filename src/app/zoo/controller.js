@@ -4,13 +4,22 @@
 (function (angular) {
 
     angular.module('app.zoo')
-        .controller('zooCtrl', ['food', config]);
+        .config(['reptilesProvider', function (reptilesProvider) {
+            reptilesProvider.reptileName = 'crocodile ';
+            reptilesProvider.weight = 100;
+            reptilesProvider.long = 2;
+        }])
+        .controller('zooCtrl', ['mammal', 'birds', 'fish', 'reptiles', 'zooConfig', zooCtrl]);
 
-    function config(food) {
-        var vm = this;
-        console.log('zoo');
-        vm.notice = function () {
-            console.log(food.meet);
-        }
+
+
+    function zooCtrl(mammal, birds, fish, reptiles, zooConfig) {
+        console.log(mammal);
+        birds.area();
+        console.log(birds.birdName);
+        fish.area();
+        console.log(fish.fishName);
+        reptiles.getReptile();
+        console.log(zooConfig);
     }
 })(window.angular);
